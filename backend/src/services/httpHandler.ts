@@ -6,12 +6,13 @@ export async function runHttpMonitor(monitor: monitorType, timeout: number) {
   // timeout represents the timeout before the req need to be resolved.
   // 7 sec as grace buffer time when interval is low.
   try {
-    const result = await axios({
-      method: monitor.method,
+    const result = await axios.request({
+      method: monitor.method as any,
       url: monitor.endpoint,
       headers: monitor.headers,
       data: monitor.body ?? undefined,
       timeout,
+      validateStatus: () => true,
     });
 
     const latency = Date.now() - timeStart;

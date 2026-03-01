@@ -32,21 +32,20 @@ export default function GraphModal({
   const failures = total - successCount;
   return (
     <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50">
-      <div className="bg-white dark:bg-neutral-900 text-black dark:text-white w-[95vw] max-w-6xl h-[85vh] rounded-xl p-1 flex flex-col">
+      <div className="bg-white dark:bg-neutral-900 text-black dark:text-white w-[98vw] sm:w-[95vw] max-w-6xl h-[95vh] sm:h-[85vh] rounded-xl p-1 flex flex-col">
         <div className="flex justify-between items-center sm:items-start p-4">
-          <div> 
+          <div>
             <h2 className="text-lg font-semibold">Latency (Last 30 Checks)</h2>
             <div className="hidden sm:grid grid-cols-3 gap-4 mt-3">
               <div>
                 <p className="text-xs text-neutral-400">Uptime</p>
                 <p
-                  className={`${
-                    Number(uptime) >= 99
+                  className={`${Number(uptime) >= 99
                       ? "text-green-500"
                       : Number(uptime) >= 95
                         ? "text-yellow-500"
                         : "text-red-500"
-                  } text-lg font-semibold`}
+                    } text-lg font-semibold`}
                 >
                   {uptime}%
                 </p>
@@ -55,13 +54,12 @@ export default function GraphModal({
               <div>
                 <p className="text-xs text-neutral-400">Avg. Latency</p>
                 <p
-                  className={`${
-                    Number(avgLatency) < 300
+                  className={`${Number(avgLatency) < 300
                       ? "text-green-500"
                       : Number(avgLatency) < 1000
                         ? "text-yellow-500"
                         : "text-red-500"
-                  } text-lg font-semibold`}
+                    } text-lg font-semibold`}
                 >
                   {avgLatency}ms
                 </p>
@@ -70,13 +68,12 @@ export default function GraphModal({
               <div>
                 <p className="text-xs text-neutral-400">Failures</p>
                 <p
-                  className={`${
-                    failures === 0
+                  className={`${failures === 0
                       ? "text-green-500"
                       : failures <= 2
                         ? "text-yellow-500"
                         : "text-red-500"
-                  } text-lg font-semibold`}
+                    } text-lg font-semibold`}
                 >
                   {failures}
                 </p>
@@ -90,60 +87,57 @@ export default function GraphModal({
             Close
           </button>
 
-          
+
         </div>
-            <div className="grid grid-cols-3 sm:grid-cols-3 gap-4 px-3 text-center sm:hidden">
-              <div>
-                <p className="text-xs text-neutral-400">Uptime</p>
-                <p
-                  className={`${
-                    Number(uptime) >= 99
-                      ? "text-green-500"
-                      : Number(uptime) >= 95
-                        ? "text-yellow-500"
-                        : "text-red-500"
-                  } text-lg font-semibold`}
-                >
-                  {uptime}%
-                </p>
-              </div>
+        <div className="grid grid-cols-3 sm:grid-cols-3 gap-4 px-3 text-center sm:hidden">
+          <div>
+            <p className="text-xs text-neutral-400">Uptime</p>
+            <p
+              className={`${Number(uptime) >= 99
+                  ? "text-green-500"
+                  : Number(uptime) >= 95
+                    ? "text-yellow-500"
+                    : "text-red-500"
+                } text-lg font-semibold`}
+            >
+              {uptime}%
+            </p>
+          </div>
 
-              <div>
-                <p className="text-xs text-neutral-400">Avg. Latency</p>
-                <p
-                  className={`${
-                    Number(avgLatency) < 300
-                      ? "text-green-500"
-                      : Number(avgLatency) < 1000
-                        ? "text-yellow-500"
-                        : "text-red-500"
-                  } text-lg font-semibold`}
-                >
-                  {avgLatency}ms
-                </p>
-              </div>
+          <div>
+            <p className="text-xs text-neutral-400">Avg. Latency</p>
+            <p
+              className={`${Number(avgLatency) < 300
+                  ? "text-green-500"
+                  : Number(avgLatency) < 1000
+                    ? "text-yellow-500"
+                    : "text-red-500"
+                } text-lg font-semibold`}
+            >
+              {avgLatency}ms
+            </p>
+          </div>
 
-              <div>
-                <p className="text-xs text-neutral-400">Failures</p>
-                <p
-                  className={`${
-                    failures === 0
-                      ? "text-green-500"
-                      : failures <= 2
-                        ? "text-yellow-500"
-                        : "text-red-500"
-                  } text-lg font-semibold`}
-                >
-                  {failures}
-                </p>
-              </div>
-            </div>
-        
+          <div>
+            <p className="text-xs text-neutral-400">Failures</p>
+            <p
+              className={`${failures === 0
+                  ? "text-green-500"
+                  : failures <= 2
+                    ? "text-yellow-500"
+                    : "text-red-500"
+                } text-lg font-semibold`}
+            >
+              {failures}
+            </p>
+          </div>
+        </div>
+
         <div className="w-full flex-1">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
               data={data}
-              margin={{ top: 10, right: 10, left: 0, bottom: 10 }}
+              margin={{ top: 10, right: 5, left: -10, bottom: 10 }}
             >
               <CartesianGrid
                 stroke={!isDark ? "#374151" : "#e5e7eb"}
@@ -153,14 +147,14 @@ export default function GraphModal({
               />
 
               <XAxis
-              tick={{ fill: "#9CA3AF", fontSize: 12 }}
+                tick={{ fill: "#9CA3AF", fontSize: 12 }}
                 dataKey="timestamp"
                 tickFormatter={(t) => new Date(t).toLocaleTimeString()}
                 tickMargin={12}
               />
 
               <YAxis
-              tick={{ fill: "#9CA3AF", fontSize: 12 }}
+                tick={{ fill: "#9CA3AF", fontSize: 12 }}
                 tickFormatter={(v) => `${v}ms`}
                 allowDecimals={false}
                 width="auto"

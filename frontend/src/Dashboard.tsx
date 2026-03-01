@@ -76,11 +76,11 @@ function DashBoard() {
         prev.map((m) =>
           m.id === data.monitorId
             ? {
-                ...m,
-                success: data.success,
-                statusCode: data.statusCode,
-                latency: data.latency,
-              }
+              ...m,
+              success: data.success,
+              statusCode: data.statusCode,
+              latency: data.latency,
+            }
             : m,
         ),
       );
@@ -136,7 +136,7 @@ function DashBoard() {
   };
 
   return (
-    <div className="min-h-screen bg-neutral-200 dark:bg-neutral-950 dark:bg-[radial-gradient(circle_at_top,_#1f2937_0%,_#0a0a0a_70%)] text-gray-800 dark:text-white px-4 py-6 sm:px-8">
+    <div className="min-h-screen bg-neutral-200 dark:bg-neutral-950 dark:bg-[radial-gradient(circle_at_top,_#1f2937_0%,_#0a0a0a_70%)] text-gray-800 dark:text-white px-3 py-4 sm:px-6 sm:py-6">
       <Modal
         modalMode={modalMode}
         setModalMode={setModalMode}
@@ -145,7 +145,7 @@ function DashBoard() {
         setTheme={setTheme}
       />
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {monitors.map((m) => (
           <div
             key={m.id}
@@ -155,13 +155,12 @@ function DashBoard() {
               <div className="flex items-center">
                 <span
                   className={`inline-flex items-center text-xs font-medium px-3 py-1 rounded-full
-              ${
-                  m.success === undefined
-                    ? "dark:bg-neutral-700/40 text-neutral-400"
-                    : m.success
-                      ? `bg-green-500/10 ${m.latency && m.latency < 300? "text-green-400": "text-yellow-400"}`
-                      : "bg-red-500/10 text-red-400"
-                }
+              ${m.success === undefined
+                      ? "dark:bg-neutral-700/40 text-neutral-400"
+                      : m.success
+                        ? `bg-green-500/10 ${m.latency && m.latency < 300 ? "text-green-400" : "text-yellow-400"}`
+                        : "bg-red-500/10 text-red-400"
+                    }
               `}
                 >
                   {m.success === undefined
@@ -174,9 +173,9 @@ function DashBoard() {
 
               <span className="text-xs dark:text-white">{m.interval}s</span>
             </div>
-            <div className="flex flex-col justify-center w-full p-2">
-              <p className="font-semibold">Method: {m.method}</p>
-              <p>Endpoint: {m.endpoint}</p>
+            <div className="flex flex-col justify-center w-full p-2 min-w-0">
+              <p className="font-semibold text-sm sm:text-base">Method: {m.method}</p>
+              <p className="text-sm sm:text-base truncate" title={m.endpoint}>Endpoint: {m.endpoint}</p>
             </div>
 
             <div className="px-2 w-full">

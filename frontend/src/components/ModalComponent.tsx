@@ -146,10 +146,10 @@ export default function Modal({
     setModalMode(null);
   };
   return (
-    <div className="h-full w-full flex items-center justify-between mb-6">
+    <div className="h-full w-full flex items-center justify-between mb-4 sm:mb-6">
       <div className="flex gap-2 items-center">
-        <h1 className="text-3xl font-bold">OwlOps </h1>
-        <h1 className="text-3xl">🦉</h1>
+        <h1 className="text-xl sm:text-3xl font-bold">OwlOps </h1>
+        <h1 className="text-xl sm:text-3xl">🦉</h1>
       </div>
       <div className="flex gap-2 items-center">
         <button
@@ -163,7 +163,7 @@ export default function Modal({
         <MailComponent />
         <button
           onClick={() => setModalMode({ type: "create" })}
-          className="bg-gray-800 dark:bg-white dark:text-gray-800 text-white px-4 py-2 rounded hidden md:block"
+          className="bg-gray-800 dark:bg-white dark:text-gray-800 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded text-sm sm:text-base hidden md:block"
         >
           + Add Monitor
         </button>
@@ -178,7 +178,7 @@ export default function Modal({
 
       {modalMode && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-white dark:bg-neutral-900 w-[95vw] max-w-xl max-h-[90vh] overflow-y-auto p-8 rounded-2xl shadow-xl flex flex-col gap-4">
+          <div className="bg-white dark:bg-neutral-900 w-[95vw] max-w-xl max-h-[90vh] overflow-y-auto p-5 sm:p-8 rounded-2xl shadow-xl flex flex-col gap-3 sm:gap-4">
             <h2 className="text-lg font-semibold mb-4">
               {modalMode.type == "edit" ? "Edit Monitor" : "Add Monitor"}
             </h2>
@@ -262,8 +262,8 @@ export default function Modal({
                 onClick={handleSave}
                 disabled={!host.trim() || !interval || Number(interval) < 5}
                 className={`px-3 py-1 rounded ${!host.trim() || !interval || Number(interval) < 5
-                    ? "opacity-50 cursor-not-allowed"
-                    : "bg-gray-800 dark:bg-white dark:text-gray-800 text-white"
+                  ? "opacity-50 cursor-not-allowed"
+                  : "bg-gray-800 dark:bg-white dark:text-gray-800 text-white"
                   }`}
               >
                 {isEdit ? "Save" : "Create"}
