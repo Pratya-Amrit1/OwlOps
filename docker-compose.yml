@@ -1,0 +1,26 @@
+services:
+  owlops:
+    image: karmapratya/owlops-monitoring:latest
+    container_name: owlops
+    ports:
+      - "3000:3000"
+    volumes:
+      - owlops-data:/app/data
+    environment:
+      - OWLOPS_TIMEZONE=Asia/Kolkata
+      - PORT=3000
+      - NODE_ENV=production
+      - DOCKER=true
+      - SMTP_HOST=smtp.gmail.com
+      - SMTP_PORT=587
+      - SMTP_USER=yourmail@gmail.com
+      - SMTP_PASS=your-16-char-app-password
+      - SMTP_FROM=OwlOps Monitor yourmail@gmail.com
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    restart: unless-stopped
+
+volumes:
+  owlops-data:
+  
